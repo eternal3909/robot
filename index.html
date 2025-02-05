@@ -17,170 +17,170 @@ int main(void)
 {
 	// ***程式初始化區段：***
 
-	M128RCB_Init();				// M128RCB機器人控制板初始化的函式(必需，不能刪)
+	M128RCB_Init();				// M128RCB機器人控制板初始化的函式(必需，不能刪)<br>
 
-	printf("Hello World!\n");
-	_delay_ms(2000);			// 開機時，等待一段時間，等伺服機都回到初始位置
+	printf("Hello World!\n");<br>
+	_delay_ms(2000);			// 開機時，等待一段時間，等伺服機都回到初始位置<br>
 
-	ReleaseAllServo();			// 釋放所有伺服機扭力的函式
-	_delay_ms(100);
+	ReleaseAllServo();			// 釋放所有伺服機扭力的函式<br>
+	_delay_ms(100);<br>
 
-	HoldAllServo();				// 恢復所有伺服機扭力的函式
-	_delay_ms(100);
+	HoldAllServo();				// 恢復所有伺服機扭力的函式<br>
+	_delay_ms(100);<br>
 
-	Pose_Init();				// 機器人初始站立動作的函式
-	_delay_ms(1200);
+	Pose_Init();				// 機器人初始站立動作的函式<br>
+	_delay_ms(1200);<br>
 
-	printf("Servo Check:\n");
-	// 讀取所有伺服機位置
-	ReadAllServoPosition();		// 讀回所有伺服機位置的函式
-	_delay_ms(100);
+	printf("Servo Check:\n");<br>
+	// 讀取所有伺服機位置<br>
+	ReadAllServoPosition();		// 讀回所有伺服機位置的函式<br>
+	_delay_ms(100);<br>
 
-	printf("Initial Done, Start!\n");
-
-
-	// ***程式主程式區段：***
-
-	while(1)
-	{
-		// ***系統程式區段：***
-
-		// 電量監測，勿刪，每次進輪詢時都檢查一次電量
-		// 當電池電量低於6.6V時，電量指示燈會閃爍，並強制停止後續工作
-		//M128RCB_VoltageMonitor();
-		// 藍牙遙控接收資料檢查：
-		// 每次進輪詢時都檢查一次有無收到藍牙資料
-		// 若有收到則執行在M128RCB_BLEJoyStick.c中對應指令動作的函式
-		M128RCB_BLEJoyStick_Check();
-		// PS2無線遙控接收資料檢查：
-		// 每次進輪詢時都檢查一次有無收到PS2搖桿按下的按鍵
-		// 若有收到則執行在M128RCB_PS2JoyStick.c中對應指令動作的函式
-		//M128RCB_PS2JoyStick_Check();
+	printf("Initial Done, Start!\n");<br>
 
 
-		// ***使用者程式區段：***
+	// ***程式主程式區段：***<br>
 
-		printf("One Time Action Sets Start!\n");
+	while(1)<br>
+	{<br>
+		// ***系統程式區段：***<br>
+
+		// 電量監測，勿刪，每次進輪詢時都檢查一次電量<br>
+		// 當電池電量低於6.6V時，電量指示燈會閃爍，並強制停止後續工作<br>
+		//M128RCB_VoltageMonitor();<br>
+		// 藍牙遙控接收資料檢查<br>：<br>
+		// 每次進輪詢時都檢查一次有無收到藍牙資料<br>
+		// 若有收到則執行在M128RCB_BLEJoyStick.c中對應指令動作的函式<br>
+		M128RCB_BLEJoyStick_Check();<br>
+		// PS2無線遙控接收資料檢查：<br>
+		// 每次進輪詢時都檢查一次有無收到PS2搖桿按下的按鍵<br>
+		// 若有收到則執行在M128RCB_PS2JoyStick.c中對應指令動作的函式<br>
+		//M128RCB_PS2JoyStick_Check();<br>
+
+
+		// ***使用者程式區段：***<br>
+
+		printf("One Time Action Sets Start!\n");<br>
 		
-		//01 下蹲
-		M128RCB_Servo_MoveTo(1,11,1484,500);
-		M128RCB_Servo_MoveTo(3,4,1941,500,
-		5,1570,500,
-		6,1471,500);//舉左手
-		M128RCB_Servo_MoveTo(3,19,1008,500,
-		18,1467,500,
-		17,1458,500);//舉右手
-		M128RCB_Servo_MoveTo(4,0,1581,500,
-		1,1792,500,
-		2,1060,500,
-		3,1506,500);//舉左繳
-		M128RCB_Servo_MoveTo(4,23,1477,500,
-		22,1028,500,
-		21,1781,500,
-		20,1468,500);//舉右繳
-		_delay_ms(1500);
-		//02
-		M128RCB_Servo_MoveTo(4,0,1354,500,
-		1,1041,500,
-		2,1193,500,
-		3,978,500);//舉左繳
-		M128RCB_Servo_MoveTo(4,23,1480,500,
-		22,1168,500,
-		21,1904,500,
-		20,1485,500);//舉右繳
-		M128RCB_Servo_MoveTo(1,11,1442,500);
-		_delay_ms(1500);
-		//01 下蹲
-		M128RCB_Servo_MoveTo(1,11,1484,500);
-		M128RCB_Servo_MoveTo(3,4,1941,500,
-		5,1570,500,
-		6,1471,500);//舉左手
-		M128RCB_Servo_MoveTo(3,19,1008,500,
-		18,1467,500,
-		17,1458,500);//舉右手
-		M128RCB_Servo_MoveTo(4,0,1581,500,
-		1,1792,500,
-		2,1060,500,
-		3,1506,500);//舉左繳
-		M128RCB_Servo_MoveTo(4,23,1477,500,
-		22,1028,500,
-		21,1781,500,
-		20,1468,500);//舉右繳
-		_delay_ms(1500);
+		//01 下蹲<br>
+		M128RCB_Servo_MoveTo(1,11,1484,500);<br>
+		M128RCB_Servo_MoveTo(3,4,1941,500,<br>
+		5,1570,500,<br>
+		6,1471,500);//舉左手<br>
+		M128RCB_Servo_MoveTo(3,19,1008,500,<br>
+		18,1467,500,<br>
+		17,1458,500);//舉右手<br>
+		M128RCB_Servo_MoveTo(4,0,1581,500,<br>
+		1,1792,500,<br>
+		2,1060,500,<br>
+		3,1506,500);//舉左腳<br>
+		M128RCB_Servo_MoveTo(4,23,1477,500,<br>
+		22,1028,500,<br>
+		21,1781,500,<br>
+		20,1468,500);//舉右腳<br>
+		_delay_ms(1500);<br>
+		//02<br>
+		M128RCB_Servo_MoveTo(4,0,1354,500,<br>
+		1,1041,500,<br>
+		2,1193,500,<br>
+		3,978,500);//<br>舉左腳<br>
+		M128RCB_Servo_MoveTo(4,23,1480,500,<br>
+		22,1168,500,<br>
+		21,1904,500,<br>
+		20,1485,500);//舉右腳<br>
+		M128RCB_Servo_MoveTo(1,11,1442,500);<br>
+		_delay_ms(1500);<br>
+		//01 下蹲<br>
+		M128RCB_Servo_MoveTo(1,11,1484,500);<br>
+		M128RCB_Servo_MoveTo(3,4,1941,500,<br>
+		5,1570,500,<br>
+		6,1471,500);//舉左手<br>
+		M128RCB_Servo_MoveTo(3,19,1008,500,<br>
+		18,1467,500,<br>
+		17,1458,500);//舉右手<br>
+		M128RCB_Servo_MoveTo(4,0,1581,500,<br>
+		1,1792,500,<br>
+		2,1060,500,<br>
+		3,1506,500);//舉左腳<br>
+		M128RCB_Servo_MoveTo(4,23,1477,500,<br>
+		22,1028,500,<br>
+		21,1781,500,<br>
+		20,1468,500);//舉右腳<br>
+		_delay_ms(1500);<br>
 		
-		//03
-		M128RCB_Servo_MoveTo(4,0,1507,500,
-		1,1878,500,
-		2,1143,500,
-		3,1177,500);//舉左繳
-		M128RCB_Servo_MoveTo(4,23,1620,500,
-		22,1917,500,
-		21,1773,500,
-		20,1819,500);//舉右繳
-		M128RCB_Servo_MoveTo(1,11,1442,500);
-		_delay_ms(1500);
-		Pose_Init();				// 機器人初始站立動作的函式
-		_delay_ms(2000);
-		//04 向前走
-		M128RCB_ActionSet_Forward();				// 呼叫 前進 動作組 函式
+		//03<br>
+		M128RCB_Servo_MoveTo(4,0,1507,500,<br>
+		1,1878,500,<br>
+		2,1143,500,<br>
+		3,1177,500);//舉左腳<br>
+		M128RCB_Servo_MoveTo(4,23,1620,500,<br>
+		22,1917,500,<br>
+		21,1773,500,<br>
+		20,1819,500);//舉右腳<br>
+		M128RCB_Servo_MoveTo(1,11,1442,500);<br>
+		_delay_ms(1500);<br>
+		Pose_Init();				// 機器人初始站立動作的函式<br>
+		_delay_ms(2000);<br>
+		//04 向前走<br>
+		M128RCB_ActionSet_Forward();				// 呼叫 前進 動作組 函式<br>
 		
-		_delay_ms(1500);	// 做完一套動作，休息1.5秒
-		//05回頭
-		M128RCB_Servo_MoveTo(1,11,1057,500); //回頭
-		_delay_ms(800);	// 做完一套動作，休息1.5秒
-		//06舉手遮臉
-		M128RCB_Servo_MoveTo(1,11,1300,500);
-		M128RCB_Servo_MoveTo(3,4,1319,500,
-		5,2481,500,
-		6,2155,500);//舉左手
-		M128RCB_Servo_MoveTo(3,19,1466,500,
-		18,539,500,
-		17,589,500);//舉右手
-		_delay_ms(1500);
-		//07回頭查看
-		M128RCB_Servo_MoveTo(3,4,2050,500,
-		5,2308,500,
-		6,1968,500);//舉左手
-		M128RCB_Servo_MoveTo(3,19,1022,500,
-		18,695,500,
-		17,1017,500);//舉右手
-		for (int i=0;i<=1;i++){
-			M128RCB_Servo_MoveTo(1,11,713,500);
-			_delay_ms(1200);
-			M128RCB_Servo_MoveTo(1,11,953,500);
-			_delay_ms(1200);
+		_delay_ms(1500);	// 做完一套動作，休息1.5秒<br>
+		//05回頭<br>
+		M128RCB_Servo_MoveTo(1,11,1057,500); //回頭<br>
+		_delay_ms(800);	// 做完一套動作，休息1.5秒<br>
+		//06舉手遮臉<br>
+		M128RCB_Servo_MoveTo(1,11,1300,500);<br>
+		M128RCB_Servo_MoveTo(3,4,1319,500,<br>
+		5,2481,500,<br>
+		6,2155,500);//舉左手<br>
+		M128RCB_Servo_MoveTo(3,19,1466,500,<br>
+		18,539,500,<br>
+		17,589,500);//舉右手<br>
+		_delay_ms(1500);<br>
+		//07回頭查看<br>
+		M128RCB_Servo_MoveTo(3,4,2050,500,<br>
+		5,2308,500,<br>
+		6,1968,500);//舉左手<br>
+		M128RCB_Servo_MoveTo(3,19,1022,500,<br>
+		18,695,500,<br>
+		17,1017,500);//舉右手<br>
+		for (int i=0;i<=1;i++){<br>
+			M128RCB_Servo_MoveTo(1,11,713,500);<br>
+			_delay_ms(1200);<br>
+			M128RCB_Servo_MoveTo(1,11,953,500);<br>
+			_delay_ms(1200);<br>
 		}
 		
-//08轉身向前走
-		M128RCB_Servo_MoveTo(1,11,1513,500);
-		_delay_ms(0500);
-		Pose_Init();				// 機器人初始站立動作的函式
-		_delay_ms(500);
-		M128RCB_ActionSet_Forward();
-		_delay_ms(1000);
-		//09向左看
-		M128RCB_Servo_MoveTo(1,11,1738,500);
-		_delay_ms(800);
-		//10被推倒
-		M128RCB_Servo_MoveTo(1,11,1758,700);
-		M128RCB_Servo_MoveTo(3,4,1731,700,
-		5,2246,700,
-		6,2060,700);//舉左手
-		M128RCB_Servo_MoveTo(3,19,968,700,
-		18,850,700,
-		17,1070,700);//舉右手
-		M128RCB_Servo_MoveTo(4,0,1331,700,
-		1,1780,700,
-		2,1052,700,
-		3,1083,700);//舉左繳
-		M128RCB_Servo_MoveTo(4,23,2037,700,
-		22,1844,700,
-		21,1385,700,
-		20,1806,700);//舉右繳
-		_delay_ms(1200);
+//08轉身向前走<br>
+		M128RCB_Servo_MoveTo(1,11,1513,500);<br>
+		_delay_ms(0500);<br>
+		Pose_Init();				// 機器人初始站立動作的函式<br>
+		_delay_ms(500);<br>
+		M128RCB_ActionSet_Forward();<br>
+		_delay_ms(1000);<br>
+		//09向左看<br>
+		M128RCB_Servo_MoveTo(1,11,1738,500);<br>
+		_delay_ms(800);<br>
+		//10被推倒<br>
+		M128RCB_Servo_MoveTo(1,11,1758,700);<br>
+		M128RCB_Servo_MoveTo(3,4,1731,700,<br>
+		5,2246,700,<br>
+		6,2060,700);//舉左手<br>
+		M128RCB_Servo_MoveTo(3,19,968,700,<br>
+		18,850,700,<br>
+		17,1070,700);//舉右手<br>
+		M128RCB_Servo_MoveTo(4,0,1331,700,<br>
+		1,1780,700,<br>
+		2,1052,700,<br>
+		3,1083,700);//舉左腳<br>
+		M128RCB_Servo_MoveTo(4,23,2037,700,<br>
+		22,1844,700,<br>
+		21,1385,700,<br>
+		20,1806,700);//舉右腳<br>
+		_delay_ms(1200);<br>
 		
-		Pose_Init();				// 機器人初始站立動作的函式
-		_delay_ms(1200);
+		Pose_Init();				// 機器人初始站立動作的函式<br>
+		_delay_ms(1200);<br>
 		
 	}
 }
